@@ -11,17 +11,6 @@ module CreatableChessBoard
     end
   end
 
-  # def create_all_pathways(node)
-  #   self.add_edge(node, [node[0]+2, node[1]-1]) if (node[0]+2).between?(0, 7) && (node[1]-1).between?(0, 7)
-  #   self.add_edge(node, [node[0]+2, node[1]+1]) if (node[0]+2).between?(0, 7) && (node[1]+1).between?(0, 7)
-  #   self.add_edge(node, [node[0]-2, node[1]+1]) if (node[0]-2).between?(0, 7) && (node[1]+1).between?(0, 7)
-  #   self.add_edge(node, [node[0]+2, node[1]-1]) if (node[0]-2).between?(0, 7) && (node[1]+1).between?(0, 7)
-  #   self.add_edge(node, [node[0]+1, node[1]+2]) if (node[0]+1).between?(0, 7) && (node[1]+2).between?(0, 7)
-  #   self.add_edge(node, [node[0]+1, node[1]-2]) if (node[0]+1).between?(0, 7) && (node[1]-2).between?(0, 7)
-  #   self.add_edge(node, [node[0]-1, node[1]+2]) if (node[0]-1).between?(0, 7) && (node[1]+2).between?(0, 7)
-  #   self.add_edge(node, [node[0]-1, node[1]-2]) if (node[0]-1).between?(0, 7) && (node[1]-2).between?(0, 7)
-  # end
-
   # since Graph.add_edge() establishes edge both ways, and because I travers through all positions, I don't need to go both ways (meaningn + and - in first coordinate)
   def create_all_pathways(node)
     self.add_edge(node, [node[0]+2, node[1]+1]) if self.nodes.include?([node[0]+2, node[1]+1])
