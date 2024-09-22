@@ -12,11 +12,9 @@ class Node
     @possible_moves << node
   end
 
-  #  doesn't work as intended
-  def print_moves
-    @possible_moves.each do |neighbour_node|
-      print "#{neighbour_node.coordinates} "
-    end
-    return nil
+  # custome .to_s for Node class
+  def to_s
+    moves_coordinates_arr = @possible_moves.map { |node| node.coordinates }
+    "#{@coordinates} :: #{moves_coordinates_arr}"
   end
 end
