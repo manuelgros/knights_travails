@@ -2,25 +2,27 @@
 module CreatableChessBoard
   def create_chess_board
     arr = Array (0..7)
-    combination_arr = arr.reduce([]) do |pair_arr, first_ele|
-      arr.each { |sec_ele| pair_arr << [first_ele, sec_ele] }
+    coordinates_arr = arr.reduce([]) do |pair_arr, first_ele|
+      arr.each { |second_ele| pair_arr << [first_ele, second_ele] }
       pair_arr
     end
-    combination_arr.each do |coordinate|
+    coordinates_arr.each do |coordinate|
       self.add_node(Node.new(coordinate))
     end
   end
 
-  # since Graph.add_edge() establishes edge both ways, and because I travers through all positions, I don't need to go both ways (meaningn + and - in first coordinate)
-  def create_all_pathways(node)
-    self.add_edge(node, [node[0]+2, node[1]+1]) if self.nodes.include?([node[0]+2, node[1]+1])
-    self.add_edge(node, [node[0]+2, node[1]-1]) if self.nodes.include?([node[0]+2, node[1]-1])
-    self.add_edge(node, [node[0]-2, node[1]+1]) if self.nodes.include?([node[0]-2, node[1]+1])
-    self.add_edge(node, [node[0]-2, node[1]-1]) if self.nodes.include?([node[0]-2, node[1]-1])
-    self.add_edge(node, [node[0]+1, node[1]+2]) if self.nodes.include?([node[0]+1, node[1]+2])
-    self.add_edge(node, [node[0]+1, node[1]-2]) if self.nodes.include?([node[0]+1, node[1]-2])
-    self.add_edge(node, [node[0]-1, node[1]+2]) if self.nodes.include?([node[0]-1, node[1]+2])
-    self.add_edge(node, [node[0]-1, node[1]-2]) if self.nodes.include?([node[0]-1, node[1]-2])
+  def establish_all_moves(coordinates)
+    print self.nodes[coordinates].coordinates # print agument for debugging
+    self.add_edge(coordinates, [coordinates[0]+2, coordinates[1]+1]) if self.nodes.include?([coordinates[0]+2, coordinates[1]+1])
+    self.add_edge(coordinates, [coordinates[0]+2, coordinates[1]-1]) if self.nodes.include?([coordinates[0]+2, coordinates[1]-1])
+    self.add_edge(coordinates, [coordinates[0]+1, coordinates[1]+2]) if self.nodes.include?([coordinates[0]+1, coordinates[1]+2])
+    self.add_edge(coordinates, [coordinates[0]+1, coordinates[1]-2]) if self.nodes.include?([coordinates[0]+1, coordinates[1]-2])
+    print "FINISH" #for debugging
+  end
+
+  def connect_all_nodes
+    self.nodes.each_key {|key| self.establish_all_moves(key)}
+    print "END" #for debugging
   end
 
 end
