@@ -2,6 +2,11 @@
 require 'pry-byebug'
 
 module ChessBoard
+  def set_up
+    self.create_chess_board
+    self.connect_all_nodes
+  end
+
   def create_chess_board
     arr = Array (0..7)
     coordinates_arr = arr.reduce([]) do |pair_arr, first_ele|
