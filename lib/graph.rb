@@ -22,7 +22,7 @@ class Graph
   
   # Custome .to_s for Graph, using Node .to_s
   def to_s
-    self.nodes.each_value {|node| prints node.to_s }
+    self.nodes.each_value {|node| puts node.to_s }
     return nil #otherwise returns Graph object => infinite loop when trying to pint in IRB
   end
 end
