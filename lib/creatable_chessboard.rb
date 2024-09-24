@@ -57,5 +57,4 @@ module CreatableChessBoard
     puts "Start:  #{path.reverse[0]}"
     path.reverse.each_with_index { |step, idx| puts "Move #{idx}: #{step}" unless idx == 0 }
   end
-
 end
