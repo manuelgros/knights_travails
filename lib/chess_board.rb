@@ -1,7 +1,7 @@
 # Module to create a 'chess board' with the Graph class
 require 'pry-byebug'
 
-module CreatableChessBoard
+module ChessBoard
   def create_chess_board
     arr = Array (0..7)
     coordinates_arr = arr.reduce([]) do |pair_arr, first_ele|
@@ -15,17 +15,14 @@ module CreatableChessBoard
   end
 
   def establish_all_moves(coordinates)
-    # print self.nodes[coordinates].coordinates # print agument for debugging
     self.add_edge(coordinates, [coordinates[0]+2, coordinates[1]+1]) if self.nodes.include?([coordinates[0]+2, coordinates[1]+1])
     self.add_edge(coordinates, [coordinates[0]+2, coordinates[1]-1]) if self.nodes.include?([coordinates[0]+2, coordinates[1]-1])
     self.add_edge(coordinates, [coordinates[0]+1, coordinates[1]+2]) if self.nodes.include?([coordinates[0]+1, coordinates[1]+2])
     self.add_edge(coordinates, [coordinates[0]+1, coordinates[1]-2]) if self.nodes.include?([coordinates[0]+1, coordinates[1]-2])
-    # print "FINISH" #for debugging
   end
 
   def connect_all_nodes
     self.nodes.each_key {|key| self.establish_all_moves(key)}
-    # print "END" #for debugging
   end
 
   def knight_moves(start, destination)

@@ -1,9 +1,9 @@
 # Graph class
 require './lib/node'
-require './lib/creatable_chessboard'
+require './lib/chess_board'
 
 class Graph
-  include CreatableChessBoard
+  include ChessBoard
 
   attr_accessor :nodes
 
