@@ -5,6 +5,7 @@ module ChessBoard
   def set_up
     self.create_chess_board
     self.connect_all_nodes
+    nil
   end
 
   def create_chess_board
@@ -20,10 +21,14 @@ module ChessBoard
   end
 
   def establish_all_moves(coordinates)
-    self.add_edge(coordinates, [coordinates[0]+2, coordinates[1]+1]) if self.nodes.include?([coordinates[0]+2, coordinates[1]+1])
-    self.add_edge(coordinates, [coordinates[0]+2, coordinates[1]-1]) if self.nodes.include?([coordinates[0]+2, coordinates[1]-1])
-    self.add_edge(coordinates, [coordinates[0]+1, coordinates[1]+2]) if self.nodes.include?([coordinates[0]+1, coordinates[1]+2])
-    self.add_edge(coordinates, [coordinates[0]+1, coordinates[1]-2]) if self.nodes.include?([coordinates[0]+1, coordinates[1]-2])
+    moves = [[2, 1], [2, -1], [1, 2], [1, -2]]
+    moves.each do |move|
+      x = move[0]
+      y = move[1] 
+      if self.nodes.include?([coordinates[0] + x, coordinates[1] + y])
+        self.add_edge(coordinates, [coordinates[0] + x, coordinates[1] + y])
+      end
+    end
   end
 
   def connect_all_nodes
